@@ -1,0 +1,27 @@
+{
+  "name": "builds-locas-lol",
+  "version": "1.0.0",
+  "description": "Builds raras pero funcionales de League of Legends, con equipos exóticos",
+  "main": "main.js",
+  "author": "Tu nombre",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "dist": "electron-builder",
+    "dist:win": "electron-builder --win",
+    "dist:mac": "electron-builder --mac",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.0.0"
+  },
+  "build": {
+    "appId": "com.ejemplo.builds-locas-lol",
+    "productName": "Builds Locas LoL",
+    "files": ["main.js", "preload.js", "renderer/**"],
+    "win": { "target": [{ "target": "nsis", "arch": ["x64", "arm64"] }] },
+    "mac": { "category": "public.app-category.games", "target": [{ "target": "dmg", "arch": ["x64", "arm64"] }] },
+    "linux": { "category": "Game", "target": [{ "target": "AppImage", "arch": ["x64"] }, { "target": "deb", "arch": ["x64"] }] }
+  }
+}

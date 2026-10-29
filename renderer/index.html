@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="es-419">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' https://ddragon.leagueoflegends.com data:; connect-src https://ddragon.leagueoflegends.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; script-src 'self' 'unsafe-inline'">
+<title>Builds locas pero que funcionan · LoL</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap">
+<style>
+:root{--bg:#f3f1ea;--sf:#fffdf8;--tx:#16222b;--mu:#5d6b75;--ln:#d9d4c6;--ac:#0e7c86;--gd:#9a6b12;--on:#fff;--chip:#e8e4d6;--wr:#a33a1e;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1820;--sf:#10252f;--tx:#e8e2d0;--mu:#8fa3ad;--ln:#223a46;--ac:#3fc1c9;--gd:#d4a94a;--on:#06141a;--chip:#173341;--wr:#ff9a7a}}
+:root[data-theme="dark"]{--bg:#0a1820;--sf:#10252f;--tx:#e8e2d0;--mu:#8fa3ad;--ln:#223a46;--ac:#3fc1c9;--gd:#d4a94a;--on:#06141a;--chip:#173341;--wr:#ff9a7a}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:400 16px/1.5 "Bricolage Grotesque",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:28px 18px 60px}
+h1{font-size:clamp(2rem,6vw,3.4rem);line-height:1.02;margin:0 0 10px;font-weight:800;letter-spacing:-.02em}
+.sub{color:var(--mu);max-width:56ch;margin:0 0 10px}
+#status{font-size:.85rem;color:var(--mu);margin:0 0 22px}
+.box{background:var(--sf);border:1px solid var(--ln);border-left:6px solid var(--gd);border-radius:6px;padding:20px;margin-bottom:22px}
+.top{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+button{font:inherit;cursor:pointer}
+.go{background:var(--ac);color:var(--on);border:0;padding:12px 20px;border-radius:4px;font-weight:600}
+.go:disabled{opacity:.6;cursor:wait}
+:focus-visible{outline:3px solid var(--gd);outline-offset:2px}
+input,select{font:inherit;padding:10px 12px;border:1px solid var(--ln);border-radius:4px;background:var(--bg);color:var(--tx)}
+.gen{display:none;border-left-color:var(--ac)}
+.gen .f{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}
+.gen #out{margin-top:16px}
+.filters{display:grid;gap:12px;margin-bottom:22px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row b{font-weight:600;min-width:84px;color:var(--mu);font-size:.9rem}
+.chip{background:var(--chip);color:var(--tx);border:1px solid transparent;padding:6px 13px;border-radius:99px;font-size:.92rem}
+.chip[aria-pressed="true"]{background:var(--tx);color:var(--bg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:16px}
+.card{background:var(--sf);border:1px solid var(--ln);border-radius:6px;padding:18px;display:flex;flex-direction:column;gap:10px}
+.card.hl{border-color:var(--gd);box-shadow:0 0 0 2px var(--gd)}
+.hd{display:flex;gap:12px;align-items:center}
+.hd>div:nth-child(2){flex:1}
+.av,.mono{width:52px;height:52px;border-radius:6px;flex:none;border:2px solid var(--gd)}
+.mono{display:grid;place-items:center;font-weight:800;font-size:1.5rem;background:var(--chip);color:var(--gd)}
+h2{margin:0;font-size:1.3rem;font-weight:800;letter-spacing:-.01em}
+.meta{color:var(--mu);font-size:.88rem}
+.fav{background:none;border:0;font-size:1.3rem;color:var(--gd);padding:2px 6px}
+.pips{display:inline-flex;gap:3px;vertical-align:middle;margin-left:6px}
+.pips i{width:9px;height:9px;border-radius:50%;background:var(--ln)}
+.pips i.on{background:var(--gd)}
+.items{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none}
+.items li{background:var(--chip);padding:3px 10px 3px 4px;border-radius:4px;font-size:.85rem;font-weight:600;display:flex;align-items:center;gap:6px}
+.items li:not(:has(img)){padding-left:10px}
+.items img{width:26px;height:26px;border-radius:3px}
+.card p{margin:0;font-size:.95rem}
+.tip{color:var(--mu);border-top:1px dashed var(--ln);padding-top:8px}
+.warn{color:var(--wr);font-size:.85rem;font-weight:600}
+.card a{color:var(--ac);font-size:.9rem;font-weight:600}
+.empty{padding:30px;text-align:center;color:var(--mu)}
+.note{margin-top:30px;color:var(--mu);font-size:.85rem;max-width:70ch}
+.items{counter-reset:n}.items li::before{counter-increment:n;content:counter(n);font-weight:800;color:var(--gd)}
+.champs{display:flex;flex-wrap:wrap;gap:6px;max-height:200px;overflow:auto;margin:12px 0;padding:2px}
+.champs .chip{display:flex;align-items:center;gap:6px;padding:4px 11px}
+.champs img{width:22px;height:22px;border-radius:50%}
+#rout{display:grid;gap:14px}
+.sec{border-top:1px dashed var(--ln);padding-top:8px;font-size:.93rem}
+.sec b{display:block;font-size:.82rem;color:var(--gd)}
+#tout{display:grid;gap:14px;margin-top:14px}
+.q{font-weight:600;font-size:.95rem}
+.spin{font-weight:800;font-size:1.7rem;letter-spacing:-.01em;color:var(--gd);min-height:2.4rem}
+@keyframes pop{from{transform:translateY(8px) scale(.97);opacity:0}to{transform:none;opacity:1}}
+.card.new{animation:pop .4s ease-out both}
+@media (prefers-reduced-motion:reduce){.card.new{animation:none}}
+</style>
+</head>
+<body>
+<main>
+<h1>Builds locas<br>que sí funcionan</h1>
+<p class="sub">Ideas fuera del meta para League of Legends: poco vistas, con lógica detrás y probadas por la comunidad. Elige entre los 173 campeones del parche, pide builds raras y distintas para cada uno o arma un equipo completo con sinergia.</p>
+<p id="status">Conectando con los datos del juego…</p>
+
+<section class="box" id="keybox" style="display:none"><h2>Clave de la IA</h2><p class="meta" style="margin:4px 0 0">Para usar la IA pega tu clave de la API de Anthropic. Se guarda solo en este equipo y las consultas se cobran a tu cuenta. <span id="kstate"></span></p><div class="row" style="margin-top:12px"><input id="kin" type="password" placeholder="sk-ant-..." aria-label="Clave de la API" autocomplete="off"><button class="go" id="ksave">Guardar clave</button></div></section>
+<section class="box" aria-live="polite">
+  <div class="top">
+    <div><div class="meta">Tu próxima partida</div><h2 id="pickName">Pulsa el botón</h2></div>
+    <button class="go" id="rand">Sorpréndeme</button>
+  </div>
+  <p id="pickText" class="meta" style="margin:8px 0 0">Elegiremos una build al azar entre las que coinciden con tus filtros.</p>
+</section>
+
+<section class="box" id="roster">
+  <h2>Los 173 campeones del parche</h2>
+  <p class="meta" style="margin:4px 0 0">Elige uno y recibe 3 builds raras y distintas, cada una con orden de compra, qué banear y cómo jugar el matchup. Pide más las veces que quieras.</p>
+  <div class="row" style="margin-top:12px"><input id="rs" placeholder="Buscar campeón" aria-label="Buscar campeón"><select id="gl" aria-label="Nivel de locura"><option value="1">Locura suave</option><option value="2" selected>Locura rara</option><option value="3">Locura total</option></select><button class="chip" id="rr">Campeón al azar</button></div>
+  <div class="champs" id="champs"></div>
+  <div id="rout" aria-live="polite"></div>
+</section>
+
+<section class="box" id="team">
+  <h2>Arma un equipo con sinergia</h2>
+  <p class="meta" style="margin:4px 0 0">Campeones fuera de su línea habitual que, juntos, destrozan. La IA sortea el grupo, elige un tema al azar y arma el truco que hace funcionar al equipo. Sin IA, el modo caos sortea el equipo sin garantías de sinergia.</p>
+  <div class="row" style="margin-top:12px"><select id="tm" aria-label="Tipo de equipo"><option value="5">Equipo completo (5)</option><option value="bot">Botlane (ADC y Soporte)</option><option value="mj">Mid y jungla</option></select><select id="tl" aria-label="Nivel de locura del equipo"><option value="1">Exótico</option><option value="2">Muy exótico</option><option value="3" selected>Caos total</option></select><button class="go" id="tb">Armar equipo con IA</button><button class="chip" id="tc">Caos sin IA</button></div>
+  <div id="tout" aria-live="polite"></div>
+</section>
+<div class="filters" id="filters"></div>
+<div class="grid" id="grid"></div>
+<p class="note">La IA conoce el parche <b>26.21</b> (del 21 de octubre de 2026) porque se lo indico en cada consulta, junto con objetos confirmados y cambios recientes. No consulta datos en vivo: cuando salga el 26.22 (4 de noviembre) hay que actualizarlo. Los objetos y las runas cambian con cada parche. Cuando hay conexión con Data Dragon (los datos oficiales de Riot), la app avisa si algún objeto ya no existe en la tienda. Las imágenes son de Riot Games y solo se cargan si abres este archivo en tu propio navegador. Los favoritos se guardan solo en este navegador.</p>
+</main>
+
+<script>
+const B=[
+{c:"Malphite AP",k:"Malphite",r:"Top",t:"AP",l:2,i:["Cinturón cohete Hextech|Hextech Rocketbelt","Tormento de Liandry|Liandry's Torment","Reloj de arena de Zhonya|Zhonya's Hourglass","Sombrero mortal de Rabadon|Rabadon's Deathcap"],ru:"Cometa arcano + Presencia mental",d:"Un tanque con daño mágico real. Tu Q castiga la línea y tu R golpea a todo el equipo enemigo.",s:"Compra el cinturón primero: te da el empuje para entrar con la R."},
+{c:"Shaco AP",k:"Shaco",r:"Jungla",t:"AP",l:3,i:["Compañero de Luden|Luden's Companion","Llama oscura|Shadowflame","Sombrero mortal de Rabadon|Rabadon's Deathcap","Báculo del vacío|Void Staff"],ru:"Electrocutar + Recolector de ojos",d:"Las cajas y el clon hacen daño mágico explosivo. Nadie sabe qué hacer cuando le pegas con magia.",s:"Planta cajas en los arbustos y en los objetivos antes de que aparezcan."},
+{c:"Rammus anti-AD",k:"Rammus",r:"Jungla",t:"Tanque",l:1,i:["Cota de espinas|Thornmail","Presagio de Randuin|Randuin's Omen","Corazón helado|Frozen Heart","Égida del fuego solar|Sunfire Aegis"],ru:"Garras del inmortal + Segundo aliento",d:"Si el enemigo ataca mucho con autoataques, se hace daño solo al tocarte. Mientras más te pegan, más duras.",s:"Provoca (E) al ADC enemigo y deja que sus propios ataques hagan el trabajo."},
+{c:"Kayle on-hit",k:"Kayle",r:"Top",t:"Híbrido",l:2,i:["Diente de Nashor|Nashor's Tooth","Hoja del rey arruinado|Blade of the Ruined King","Hoja de la furia de Guinsoo|Guinsoo's Rageblade","Fin del ingenio|Wit's End"],ru:"Ritmo letal + Triunfo",d:"Escalado largo con ataques que mezclan daño físico y mágico. Es difícil de contrarrestar con una sola resistencia.",s:"Sobrevive hasta los niveles 11 y 16: ahí llegan tus mejoras."},
+{c:"Singed AP",k:"Singed",r:"Top",t:"AP",l:2,i:["Tormento de Liandry|Liandry's Torment","Cetro de cristal de Rylai|Rylai's Crystal Scepter","Máscara abisal|Abyssal Mask","Reloj de arena de Zhonya|Zhonya's Hourglass"],ru:"Aumento glacial + Hechizos acelerados",d:"Veneno, ralentización y daño porcentual: los tanques se derriten persiguiéndote.",s:"Deja el rastro de veneno detrás de ti mientras huyes en las peleas."},
+{c:"Cho'Gath híbrido",k:"Chogath",r:"Top",t:"Tanque",l:1,i:["Égida del fuego solar|Sunfire Aegis","Armadura de Warmog|Warmog's Armor","Visaje espiritual|Spirit Visage","Fuerza de la naturaleza|Force of Nature"],ru:"Garras del inmortal + Revitalizar",d:"Comes, creces y te vuelves enorme. Tu R hace daño verdadero, así que las resistencias no importan.",s:"Prioriza comer súbditos desde el inicio para acumular tus pilas."},
+{c:"Ezreal AP",k:"Ezreal",r:"Mid",t:"AP",l:1,i:["Compañero de Luden|Luden's Companion","Llama oscura|Shadowflame","Sombrero mortal de Rabadon|Rabadon's Deathcap","Báculo del vacío|Void Staff"],ru:"Cometa arcano + Presencia mental",d:"Un ADC convertido en mago de rango: poke constante con la Q y daño explosivo con las habilidades.",s:"Usa la E para huir después de la R, no solo para entrar."},
+{c:"Amumu AP",k:"Amumu",r:"Jungla",t:"AP",l:2,i:["Tormento de Liandry|Liandry's Torment","Cetro de cristal de Rylai|Rylai's Crystal Scepter","Reloj de arena de Zhonya|Zhonya's Hourglass","Máscara abisal|Abyssal Mask"],ru:"Electrocutar + Segundo aliento",d:"Un tanque con daño continuo y control de masas. Nadie puede alejarse de ti.",s:"Empuja a los enemigos a agruparse: tu R vale por tres si alcanza a cuatro."},
+{c:"Taric AP",k:"Taric",r:"Soporte",t:"AP",l:2,i:["Mandato imperial|Imperial Mandate","Convergencia de Zeke|Zeke's Convergence","Redención|Redemption","Bendición de Mikael|Mikael's Blessing"],ru:"Guardián + Segundo aliento",d:"Aguantas, curas y marcas a los enemigos. Tu daño viene de lo que absorbes y devuelves.",s:"Guarda la R para antes de que empiece la pelea, no después."},
+{c:"Teemo tanque",k:"Teemo",r:"Top",t:"Tanque",l:3,i:["Tormento de Liandry|Liandry's Torment","Visaje espiritual|Spirit Visage","Velo de la banshee|Banshee's Veil","Cetro de cristal de Rylai|Rylai's Crystal Scepter"],ru:"Aumento glacial + Segundo aliento",d:"Setas y veneno fastidian a todos. Cuesta matarte y cuesta alcanzarte.",s:"Llena los puntos de paso con setas: la visión es lo que más pierde el rival."},
+{c:"Nunu AP",k:"Nunu",r:"Jungla",t:"AP",l:2,i:["Tormento de Liandry|Liandry's Torment","Cetro de cristal de Rylai|Rylai's Crystal Scepter","Reloj de arena de Zhonya|Zhonya's Hourglass","Sombrero mortal de Rabadon|Rabadon's Deathcap"],ru:"Cometa arcano + Presencia mental",d:"Una R que congela a todos y deja a tu equipo rematar. Aguantas mucho y haces más daño del que parece.",s:"Reserva la R para peleas de equipo, no para duelos."},
+{c:"Kennen ADC",k:"Kennen",r:"ADC",t:"Híbrido",l:3,i:["Hoja del rey arruinado|Blade of the Ruined King","Hoja de la furia de Guinsoo|Guinsoo's Rageblade","Diente de Nashor|Nashor's Tooth","Fin del ingenio|Wit's End"],ru:"Ritmo letal + Triunfo",d:"Un mago de línea que juega como tirador on-hit. Rápido, con mucho alcance y daño mixto.",s:"Usa tu E para atravesar la línea enemiga y recuperar posición."},
+{c:"Karthus soporte",k:"Karthus",r:"Soporte",t:"AP",l:3,i:["Tormento de Liandry|Liandry's Torment","Cetro de cristal de Rylai|Rylai's Crystal Scepter","Reloj de arena de Zhonya|Zhonya's Hourglass","Báculo del vacío|Void Staff"],ru:"Electrocutar + Tomo de sabiduría",d:"Daño de área desde la distancia en soporte. Tu R sirve para rematar en todo el mapa.",s:"Cuida tu posición: eres frágil, pero tu daño aterra a los rivales."}
+];
+const roles=["Top","Jungla","Mid","ADC","Soporte"],types=["AP","Tanque","Híbrido"];
+const st={r:null,t:null,l:null,fav:false};
+let favs=new Set(),ver=null,imap={},inames=[],hl=null,sampleFn=null;
+try{favs=new Set(JSON.parse(localStorage.getItem("lolfav")||"[]"))}catch(e){}
+const save=()=>{try{localStorage.setItem("lolfav",JSON.stringify([...favs]))}catch(e){}};
+const E=s=>String(s==null?"":s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const N=s=>s.toLowerCase().replace(/[^a-z]/g,"");
+const D="https://ddragon.leagueoflegends.com/";
+
+async function loadData(){
+  const s=document.getElementById("status");
+  try{
+    ver=(await (await fetch(D+"api/versions.json")).json())[0];
+    const it=(await (await fetch(D+"cdn/"+ver+"/data/en_US/item.json")).json()).data;
+    for(const id in it){const o=it[id];if(o.maps&&o.maps[11]&&o.gold&&o.gold.purchasable){imap[N(o.name)]=id;if(o.gold.total>=1800)inames.push(o.name)}}
+    s.textContent="Datos oficiales cargados. Parche "+ver+".";
+  }catch(e){
+    ver=null;s.textContent="Parche "+PATCH+" (datos integrados). Sin conexión con Data Dragon: se muestran iconos propios. Abre este archivo en tu navegador para ver las imágenes oficiales.";
+  }
+  draw();drawRoster();
+}
+function parse(x){const p=x.split("|");return{es:p[0],en:p[1]||null}}
+function avatar(b){
+  const m='<div class="mono" aria-hidden="true">'+E(b.c[0])+'</div>';
+  if(!ver||!b.k)return m;
+  return '<img class="av" alt="" src="'+D+'cdn/'+ver+'/img/champion/'+E(b.k)+'.png" onerror="this.outerHTML=this.dataset.f" data-f="'+E(m)+'">';
+}
+function pips(n){return '<span class="pips" title="Locura '+n+' de 3">'+[1,2,3].map(k=>'<i class="'+(k<=n?'on':'')+'"></i>').join("")+'</span>'}
+function card(b,hl){
+  const el=document.createElement("article");el.className="card"+(hl?" hl":"");
+  const x=b.ai?b:Object.assign({},b,DET[b.k]||{}),f=favs.has(b.c),its=b.i.map(parse),miss=[];
+  const lis=its.map(o=>{
+    const id=o.en&&imap[N(o.en)];
+    if(o.en&&ver&&Object.keys(imap).length&&!id)miss.push(o.es);
+    const im=id?'<img alt="" src="'+D+'cdn/'+ver+'/img/item/'+id+'.png" onerror="this.remove()">':"";
+    return '<li title="'+E(o.en||o.es)+'">'+im+E(o.es)+'</li>';
+  }).join("");
+  el.innerHTML='<div class="hd">'+avatar(b)+'<div><h2>'+E(b.c)+'</h2><div class="meta">'+E(b.r)+' · '+E(b.t)+' · locura'+pips(b.l)+'</div></div>'+
+  (b.k&&!b.ai?'<button class="fav" aria-label="Guardar en favoritos" aria-pressed="'+f+'">'+(f?"★":"☆")+'</button>':"")+'</div>'+
+  '<div class="sec"><b>Orden de compra</b>'+(x.e?'Inicio: '+E(x.e)+' Después, en este orden:':'En este orden:')+'</div><ul class="items">'+lis+'</ul><p>'+E(b.d)+'</p><p class="meta">Runas: '+E(b.ru)+'</p>'+(x.m?'<div class="sec"><b>Cómo jugar el matchup</b>'+E(x.m)+'</div>':'')+(x.b?'<div class="sec"><b>Qué banear</b>'+E(x.b)+'</div>':'')+'<p class="tip">'+E(b.s)+'</p>'+
+  (miss.length?'<p class="warn">Revisar: '+E(miss.join(", "))+' ya no aparece en la tienda del parche '+E(ver)+'.</p>':"")+
+  (b.k?'<a href="https://u.gg/lol/champions/'+E(b.k.toLowerCase())+'/build" target="_blank" rel="noopener">Ver estadísticas actuales de '+E(b.n||b.c.split(" ")[0])+'</a>':"");
+  const fb=el.querySelector(".fav");if(fb)fb.onclick=()=>{favs.has(b.c)?favs.delete(b.c):favs.add(b.c);save();draw()};
+  return el;
+}
+function chips(label,key,vals,fmt){
+  const row=document.createElement("div");row.className="row";row.innerHTML="<b>"+label+"</b>";
+  vals.forEach(v=>{const b=document.createElement("button");b.className="chip";b.textContent=fmt?fmt(v):v;b.setAttribute("aria-pressed",st[key]===v);
+    b.onclick=()=>{st[key]=st[key]===v?null:v;draw()};row.appendChild(b)});
+  return row;
+}
+const filtered=()=>B.filter(b=>(!st.r||b.r===st.r)&&(!st.t||b.t===st.t)&&(!st.l||b.l===st.l)&&(!st.fav||favs.has(b.c)));
+function draw(){
+  const fl=document.getElementById("filters");fl.innerHTML="";
+  fl.appendChild(chips("Rol","r",roles));fl.appendChild(chips("Daño","t",types));
+  fl.appendChild(chips("Locura","l",[1,2,3],v=>["Suave","Rara","Muy loca"][v-1]));
+  const fr=document.createElement("div");fr.className="row";
+  const fb=document.createElement("button");fb.className="chip";fb.textContent="Solo favoritos";fb.setAttribute("aria-pressed",st.fav);
+  fb.onclick=()=>{st.fav=!st.fav;draw()};fr.appendChild(fb);fl.appendChild(fr);
+  const g=document.getElementById("grid");g.innerHTML="";const list=filtered();
+  if(!list.length){g.innerHTML='<div class="empty">Ninguna build coincide. Quita un filtro para ver más.</div>';return}
+  list.forEach(b=>g.appendChild(card(b,b.c===hl)));
+}
+document.getElementById("rand").onclick=()=>{
+  const l=filtered();
+  if(!l.length){document.getElementById("pickText").textContent="No hay builds con estos filtros. Quita alguno e inténtalo de nuevo.";return}
+  const b=l[Math.floor(Math.random()*l.length)];hl=b.c;
+  document.getElementById("pickName").textContent=b.c+" ("+b.r+")";
+  document.getElementById("pickText").textContent=b.d;draw();
+  const h=document.querySelector(".card.hl");if(h)h.scrollIntoView({behavior:"smooth",block:"center"});
+};
+const PATCH="26.21";
+const ROS="Aatrox,Ahri,Akali,Akshan,Alistar,Ambessa,Amumu,Anivia,Annie,Aphelios,Ashe,Aurelion Sol,Aurora,Azir,Bard,Bel'Veth,Blitzcrank,Brand,Braum,Briar,Caitlyn,Camille,Cassiopeia,Cho'Gath,Corki,Darius,Diana,Dr. Mundo,Draven,Ekko,Elise,Evelynn,Ezreal,Fiddlesticks,Fiora,Fizz,Galio,Gangplank,Garen,Gnar,Gragas,Graves,Gwen,Hecarim,Heimerdinger,Hwei,Illaoi,Irelia,Ivern,Janna,Jarvan IV,Jax,Jayce,Jhin,Jinx,K'Sante,Kai'Sa,Kalista,Karma,Karthus,Kassadin,Katarina,Kayle,Kayn,Kennen,Kha'Zix,Kindred,Kled,Kog'Maw,LeBlanc,Lee Sin,Leona,Lillia,Lissandra,Locke,Lucian,Lulu,Lux,Malphite,Malzahar,Maokai,Master Yi,Mel,Milio,Miss Fortune,Mordekaiser,Morgana,Naafiri,Nami,Nasus,Nautilus,Neeko,Nidalee,Nilah,Nocturne,Nunu,Olaf,Orianna,Ornn,Pantheon,Poppy,Pyke,Qiyana,Quinn,Rakan,Rammus,Rek'Sai,Rell,Renata,Renekton,Rengar,Riven,Rumble,Ryze,Samira,Sejuani,Senna,Seraphine,Sett,Shaco,Shen,Shyvana,Singed,Sion,Sivir,Skarner,Smolder,Sona,Soraka,Swain,Sylas,Syndra,Tahm Kench,Taliyah,Talon,Taric,Teemo,Thresh,Tristana,Trundle,Tryndamere,Twisted Fate,Twitch,Udyr,Urgot,Varus,Vayne,Veigar,Vel'Koz,Vex,Vi,Viego,Viktor,Vladimir,Volibear,Warwick,Wukong,Xayah,Xerath,Xin Zhao,Yasuo,Yone,Yorick,Yunara,Yuumi,Zaahen,Zac,Zed,Zeri,Ziggs,Zilean,Zoe,Zyra".split(",");
+const KX={"Bel'Veth":"Belveth","Kai'Sa":"Kaisa","Kha'Zix":"Khazix","LeBlanc":"Leblanc","Vel'Koz":"Velkoz","Wukong":"MonkeyKing"};
+const KEY=n=>KX[n]||n.replace(/[^A-Za-z]/g,"");
+const KNOWN="Infinity Edge, Rabadon's Deathcap, Bloodthirster, Trinity Force, Overlord's Bloodmail, Lord Dominik's Regards, Ravenous Hydra, Titanic Hydra, Death's Dance, Stridebreaker, Zhonya's Hourglass, Guardian Angel, Sterak's Gage, Stormrazor, Mercurial Scimitar, Blade of the Ruined King, Shadowflame, Jak'Sho, The Protean, Dusk and Dawn, Endless Hunger, Warmog's Armor, Maw of Malmortius, Spear of Shojin, Riftmaker, Sundered Sky, Essence Reaver, Bastion Breaker, Yun Tal Wildarrows, Mortal Reminder, Black Cleaver, Experimental Hexplate, Heartsteel, Statikk Shiv, Banshee's Veil, Guinsoo's Rageblade, Void Staff, Cryptbloom, Hextech Gunblade, Hullbreaker, Terminus, Edge of Night, Cosmic Drive, Silvermere Dawn, Chempunk Chainsword, Liandry's Torment, Kraken Slayer, Immortal Shieldbow, The Collector, Force of Nature, Frozen Heart, Randuin's Omen, Spirit Visage, Thornmail, Zeke's Convergence, Eclipse, Dawncore, Hubris, Luden's Echo, Echoes of Helia, Eleisa's Miracle".split(", ");
+const DET={
+Malphite:{e:"Anillo de Doran y poción. Botas de Mercurio o de Ninja según el daño rival.",b:"Kayle o Vayne: escalan mejor que tú y no puedes alcanzarlas.",m:"Del nivel 1 al 5 empuja con la Q y no gastes la E sin necesidad. Contra poke, compra el cinturón antes del segundo objeto. En peleas de equipo espera a que se agrupen y entra por el flanco con la R."},
+Shaco:{e:"Cría de jungla y poción. Botas de hechicero tras la primera vuelta.",b:"Lee Sin o Rek'Sai: te ganan el control de la jungla y complican tus invasiones.",m:"En el primer ciclo planta cajas en el lado enemigo sin pelear. Gankea por la espalda con la Q y remata con el clon. Si el rival acumula vida y resistencia mágica, adelanta el Báculo del vacío."},
+Rammus:{e:"Cría de jungla y poción. Botas de Mercurio o de Ninja según el enemigo.",b:"Vayne: su daño verdadero ignora tu armadura.",m:"Pide ganks en las líneas con daño físico y provoca con la E al carry. Si el equipo rival tiene muchos magos, cambia la Cota de espinas por resistencia mágica."},
+Kayle:{e:"Escudo de Doran y poción. Botas de Mercurio si hay mucho control.",b:"Fiora o Camille: te castigan antes de llegar a tus niveles clave.",m:"Hasta el nivel 6 farmea seguro y evita los intercambios. Con el 11 ya puedes pelear; en el 16 empieza tu late."},
+Singed:{e:"Anillo de Doran y poción. Botas de hechicero.",b:"Vladimir o Kayle: contrarrestan tu veneno con curación o escalado.",m:"Gana la línea con empuje y cierres. Usa la Q con la E para dar posición y llevar al rival hacia tu jungla."},
+Chogath:{e:"Escudo de Doran y poción. Botas de Mercurio o de Ninja.",b:"Teemo o Vayne: te desgastan a distancia y no te dan la pelea.",m:"Con pocas pilas, farmea con la E y come súbditos. Evita el intercambio largo contra campeones de rango."},
+Ezreal:{e:"Anillo de Doran y poción. Botas de hechicero.",b:"Zed: te presiona en línea y te cuesta responder a su daño.",m:"Usa la Q para empujar y guarda la E para huir. En el nivel 6 la R sirve para rematar en peleas de equipo."},
+Amumu:{e:"Cría de jungla y poción. Botas de hechicero o Mercurio.",b:"Rammus: te frena la pelea y te quita la iniciativa.",m:"Gankea con la Q y combina con la R sobre el grupo. Evita el combate individual sin tu equipo."},
+Taric:{e:"Moneda antigua y poción. Botas de Mercurio o de Ninja.",b:"Blitzcrank o Nautilus: te sacan de posición antes de tu combo.",m:"Mantén al ADC cerca y usa el aturdimiento para proteger. Reserva la R para antes de la pelea."},
+Teemo:{e:"Escudo de Doran y poción. Botas de Mercurio.",b:"Kayle o Vayne: te pasan de largo en el late.",m:"Pon setas para controlar el mapa y del río. Intercambia con la Q cuando el rival gaste sus habilidades."},
+Nunu:{e:"Cría de jungla y poción. Botas de hechicero.",b:"Rek'Sai o Lee Sin: te ganan el control de los objetivos.",m:"Prioriza los ganks con Q para la fase de línea. Guarda la R para peleas de equipo, no para duelos."},
+Kennen:{e:"Hoja larga y poción. Botas de Mercurio.",b:"Draven o Caitlyn: te ganan en la línea y te dan poco espacio.",m:"Usa la E para entrar y salir. En peleas de equipo busca flanquear y combina con la R."},
+Karthus:{e:"Moneda antigua y poción. Botas de hechicero.",b:"Blitzcrank o Pyke: te sacan de posición en un instante.",m:"Mantén la distancia y haz poke con la Q. Con la R remata en cualquier parte del mapa."}
+};
+function drawRoster(){
+  const q=N(document.getElementById("rs").value),c=document.getElementById("champs");c.innerHTML="";
+  ROS.filter(n=>N(n).includes(q)).forEach(n=>{
+    const b=document.createElement("button");b.className="chip";
+    b.innerHTML=(ver?'<img alt="" src="'+D+'cdn/'+ver+'/img/champion/'+E(KEY(n))+'.png" onerror="this.remove()">':"")+E(n);
+    b.onclick=()=>make(n);c.appendChild(b);
+  });
+}
+const THEMES=["tanque que hace mucho daño","on-hit","mago con objetos de tirador","tirador con objetos de mago","letalidad en un campeón de tanque","soporte que hace daño","bruiser con escudos","curación y robo de vida","velocidad de movimiento y persecución","vida y daño verdadero","poke de rango extremo","snowball temprano","anti-curación y anti-tanques","utilidad para todo el equipo","protector del carry","sin daño: solo molestar"];
+const shuffle=a=>{a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+const S=v=>String(v==null?"":v);
+const CTX=()=>"Eres un coach experto de League of Legends. Parche actual: "+PATCH+" (salió el 21 de octubre de 2026; el 26.22 sale el 4 de noviembre). Cambios recientes: Hubris y Gluttonous Greaves nerfeados, Dawncore buffeado y Bastion Breaker con menos letalidad. Objetos de la tienda de la Grieta: "+(inames.length?inames:KNOWN).join(", ")+". Español latinoamericano neutro. Usa solo objetos de la lista; si dudas, elige uno clásico. Cada objeto se escribe como \"Nombre en español|Name in English\". ";
+const toB=(o,k,n)=>({ai:true,k,n,c:n+": "+(S(o.q)||"Build rara"),r:S(o.r),t:S(o.t),l:Math.min(3,Math.max(1,+o.l||2)),i:(o.i||[]).slice(0,6).map(S),ru:S(o.ru),d:S(o.d),s:S(o.s),e:S(o.e),b:S(o.b),m:S(o.m)});
+const seen={};
+async function make(n,more){
+  const k=KEY(n),out=document.getElementById("rout"),cur=B.find(x=>x.k===k);
+  const old=document.getElementById("moreBtn");if(old)old.remove();
+  if(!more){out.innerHTML="";if(cur)out.appendChild(card(cur,true))}
+  if(!sampleFn){if(!cur)out.innerHTML='<p class="meta">Todavía no hay una build curada para '+E(n)+'. La IA solo funciona en la versión publicada de esta app.</p>';return}
+  const w=document.createElement("p");w.className="meta";w.textContent="La IA está armando 3 builds distintas para "+n+" (parche "+PATCH+")…";out.appendChild(w);
+  try{
+    const prev=(seen[k]||[]).join(", ");
+    const r=await sampleFn.json(CTX()+"Crea 3 builds MUY distintas entre sí, raras y divertidas de jugar pero funcionales, para "+n+", con nivel de locura "+document.getElementById("gl").value+" de 3. Un tema sugerido por build (adáptalo si no tiene sentido): "+shuffle(THEMES).slice(0,3).join("; ")+"."+(prev?" No repitas estas ideas: "+prev+".":"")+" Devuelve SOLO un arreglo JSON de 3 objetos con las claves: q (nombre divertido de la build), r (Top, Jungla, Mid, ADC o Soporte), t (AP, Tanque o Híbrido), l (1 a 3), e (objeto inicial y botas), i (4 a 6 objetos EN ORDEN DE COMPRA), ru (runas), d (por qué funciona, 2 frases), b (a quién banear con esta build y por qué, 1 o 2 frases), m (cómo jugar el matchup: fase de línea, mitad y final, 3 o 4 frases), s (un consejo).",{cache:false});
+    w.remove();
+    (Array.isArray(r)?r:[r]).slice(0,3).forEach(o=>{const b=toB(o,k,n);(seen[k]=seen[k]||[]).push(S(o.q));out.appendChild(card(b,false))});
+    const mb=document.createElement("button");mb.className="go";mb.id="moreBtn";mb.textContent="Generar 3 builds más";mb.onclick=()=>make(n,true);out.appendChild(mb);
+  }catch(e){w.textContent="No se pudo generar las builds: "+((e&&e.message)||"error desconocido")}
+}
+const TEAMT=["dive total: todos entran a la vez","split push 5 contra 5 en tres líneas","captura de uno solo: el pick-off decide la partida","poke de rango extremo y asedio a torretas","control de masas encadenado sin descanso","escudos y curación para pelear eternamente","daño verdadero y anti-tanques","velocidad y emboscadas por todo el mapa","protección total a un único carry","caos puro: nadie sabe qué va a pasar"];
+const CH=["Prioricen torretas por encima de objetivos neutrales.","No compren objetos defensivos hasta el minuto 20.","Peleen siempre agrupados: nadie va solo.","Elijan un carry y protéjanlo todo el partido.","Cambien de línea cada vez que caiga una torre.","Gana la pelea quien use primero el control de masas.","Intenten cerrar la partida antes del minuto 25."];
+function startSpin(box){const d=document.createElement("div");d.className="spin";box.appendChild(d);const iv=setInterval(()=>{d.textContent=ROS[Math.floor(Math.random()*ROS.length)]},80);return()=>{clearInterval(iv);d.remove()}}
+function addCopy(out,text){
+  const b=document.createElement("button");b.className="chip";b.textContent="Copiar equipo";
+  b.onclick=async()=>{try{await navigator.clipboard.writeText(text);b.textContent="Copiado"}catch(e){b.textContent="No se pudo copiar"}};
+  out.appendChild(b);
+}
+const ROLES={"5":["Top","Jungla","Mid","ADC","Soporte"],bot:["ADC","Soporte"],mj:["Mid","Jungla"]};
+document.getElementById("rr").onclick=()=>{
+  const out=document.getElementById("rout");out.innerHTML="";const stop=startSpin(out);
+  const n=ROS[Math.floor(Math.random()*ROS.length)];
+  setTimeout(()=>{stop();make(n)},1200);
+};
+document.getElementById("tc").onclick=()=>{
+  const out=document.getElementById("tout"),roles=ROLES[document.getElementById("tm").value];
+  out.innerHTML="";const stop=startSpin(out);
+  setTimeout(()=>{
+    stop();
+    const pk=shuffle(ROS).slice(0,roles.length),ch=CH[Math.floor(Math.random()*CH.length)];
+    const h=document.createElement("article");h.className="card hl new";
+    h.innerHTML="<h2>Equipo caos</h2><p>Campeones sorteados al azar, sin sinergia garantizada.</p><div class='sec'><b>Reto del equipo</b>"+E(ch)+"</div>";
+    out.appendChild(h);
+    const g=document.createElement("div");g.className="grid";
+    roles.forEach((r,i)=>{
+      const n=pk[i],k=KEY(n),el=document.createElement("article");el.className="card new";el.style.animationDelay=(i*120)+"ms";
+      el.innerHTML='<div class="hd">'+avatar({c:n,k})+'<div><h2>'+E(n)+'</h2><div class="meta">Hoy juegas de '+E(r)+'</div></div></div><a href="https://u.gg/lol/champions/'+E(k.toLowerCase())+'/build" target="_blank" rel="noopener">Ver builds de '+E(n)+'</a>';
+      g.appendChild(el);
+    });
+    out.appendChild(g);
+    addCopy(out,"Equipo caos: "+roles.map((r,i)=>r+": "+pk[i]).join(" · ")+". Reto: "+ch);
+  },1300);
+};
+document.getElementById("tb").onclick=async()=>{
+  const out=document.getElementById("tout"),btn=document.getElementById("tb"),m=document.getElementById("tm").value;
+  if(!sampleFn){out.innerHTML='<p class="meta">El armado con IA solo funciona en la versión publicada en Claude. Aquí puedes usar el modo caos sin IA.</p>';return}
+  const roles=ROLES[m],th=TEAMT[Math.floor(Math.random()*TEAMT.length)];
+  const pool=shuffle(ROS).slice(0,m==="5"?35:20).join(", ");
+  btn.disabled=true;out.innerHTML="";const stop=startSpin(out);
+  try{
+    const r=await sampleFn.json(CTX()+"Arma un equipo EXÓTICO para estos roles: "+roles.join(", ")+". Regla clave: cada campeón debe jugar en una línea donde NORMALMENTE NO se ve (por ejemplo, un soporte en top, un tirador en jungla, un tanque en ADC), y aun así el equipo debe destrozar por la sinergia entre ellos. Tema del equipo: "+th+". Elige SOLO de este grupo al azar: "+pool+". Nivel de caos "+document.getElementById("tl").value+" de 3. Devuelve SOLO un JSON con estas claves: nombre, idea (1 o 2 frases), truco (la combinación exacta que hace que funcione y cómo se activa, 2 frases), sinergia (2 frases), plan (en qué momento del juego y qué objetivos, 2 frases), debil (su punto débil y cómo evitarlo, 1 frase), jugadores (arreglo con un objeto por rol, con las claves: r (rol que juega hoy), normal (línea donde normalmente se juega), c (nombre exacto del campeón), q (nombre de su build), t (AP, Tanque o Híbrido), l (1 a 3), i (3 a 5 objetos EN ORDEN DE COMPRA), ru (runas), d (su papel en el truco, 1 frase), s (un consejo)).",{cache:false});
+    stop();out.innerHTML="";
+    const h=document.createElement("article");h.className="card hl new";
+    h.innerHTML="<h2>"+E(r.nombre)+"</h2><p>"+E(r.idea)+"</p><div class='sec'><b>Tema</b>"+E(th)+"</div><div class='sec'><b>El truco</b>"+E(r.truco)+"</div><div class='sec'><b>Sinergia</b>"+E(r.sinergia)+"</div><div class='sec'><b>Cómo ganar</b>"+E(r.plan)+"</div><div class='sec'><b>Punto débil</b>"+E(r.debil)+"</div>";
+    out.appendChild(h);
+    const g=document.createElement("div");g.className="grid";
+    const js=(r.jugadores||[]).slice(0,5);
+    js.forEach((q,i)=>{const c=S(q.c);q.d="Normalmente va de "+S(q.normal)+", hoy de "+S(q.r)+". "+S(q.d);const el=card(toB(q,KEY(c),c),false);el.classList.add("new");el.style.animationDelay=(i*150)+"ms";g.appendChild(el)});
+    out.appendChild(g);
+    addCopy(out,S(r.nombre)+": "+js.map(q=>S(q.r)+": "+S(q.c)).join(" · ")+". Truco: "+S(r.truco));
+  }catch(e){stop();out.innerHTML='<p class="meta">No se pudo armar el equipo: '+E((e&&e.message)||"error desconocido")+'</p>'}
+  btn.disabled=false;
+};
+document.getElementById("rs").oninput=drawRoster;
+(async()=>{try{
+  if(window.lolApp){
+    document.getElementById("keybox").style.display="block";
+    sampleFn={json:p=>window.lolApp.ask(p)};
+    const ks=document.getElementById("kstate");
+    ks.textContent=(await window.lolApp.hasKey())?"Clave guardada.":"Aún no hay clave.";
+    document.getElementById("ksave").onclick=async()=>{
+      const v=document.getElementById("kin").value.trim();if(!v)return;
+      try{await window.lolApp.setKey(v);document.getElementById("kin").value="";ks.textContent="Clave guardada."}catch(e){ks.textContent=e.message}
+    };
+  }else if(window.claude)sampleFn=await claude.use("sample");
+}catch(e){}})();
+draw();drawRoster();loadData();
+</script>
+</body>
+</html>
